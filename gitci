@@ -1,0 +1,19 @@
+#!/bin/sh
+git diff
+git status
+read -p "Continue (y/n)?"
+if [ "$REPLY" != "y" ]; then
+	echo "Exiting..."
+	exit 1
+fi
+set -e
+git add $PWD
+echo $@
+if [ "$@" ] 
+then
+  git commit -m "$@"
+else
+  git commit
+fi
+git pull
+git push

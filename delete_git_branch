@@ -1,0 +1,11 @@
+#!/bin/sh
+# git-delete-branch <branch_name>
+ 
+if [ $# -ne 1 ]; then
+         echo 1>&2 Usage: $0 branch_name
+         exit 127
+fi
+ 
+git push origin :refs/heads/$@
+git branch -D $@
+git fetch --all --prune
