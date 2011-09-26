@@ -6,6 +6,8 @@ if [ $# -ne 1 ]; then
          exit 127
 fi
  
+echo "First fetching and pruning to reconcile with remote..."
+git fetch --all --prune
+
 git push origin :refs/heads/$@
 git branch -D $@
-git fetch --all --prune
